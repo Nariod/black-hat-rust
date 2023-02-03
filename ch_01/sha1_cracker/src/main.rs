@@ -1,10 +1,10 @@
+use md5::{Digest, Md5};
 use std::{
     env,
     error::Error,
     fs::File,
     io::{BufRead, BufReader},
 };
-use md5::{Md5, Digest}; 
 
 const SHA1_HEX_STRING_LENGTH: usize = 40;
 const MD5_HEX_STRING_LENGTH: usize = 32;
@@ -30,7 +30,7 @@ fn main() -> Result<(), Box<dyn Error>> {
             let common_password = line.trim();
             if hash_to_crack == &hex::encode(sha1::Sha1::digest(common_password.as_bytes())) {
                 println!("Password found: {}", &common_password);
-                return Ok(());   
+                return Ok(());
             }
         }
         println!("password not found in wordlist :(");
