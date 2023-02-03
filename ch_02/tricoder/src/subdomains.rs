@@ -46,10 +46,7 @@ pub fn resolves(domain: &Subdomain) -> bool {
     let mut opts = ResolverOpts::default();
     opts.timeout = Duration::from_secs(4);
 
-    let dns_resolver = Resolver::new(
-        ResolverConfig::default(),
-        opts,
-    )
-    .expect("subdomain resolver: building DNS client");
+    let dns_resolver = Resolver::new(ResolverConfig::default(), opts)
+        .expect("subdomain resolver: building DNS client");
     dns_resolver.lookup_ip(domain.domain.as_str()).is_ok()
 }
